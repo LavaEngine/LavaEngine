@@ -1,0 +1,31 @@
+set(thirdparty_dir_name freetype)
+set(library_parent_dir "prebuilt/win32")
+set(include_dirs 
+	include
+)
+set(libraries 
+)
+
+set(current_thirdparty_path "${thirdparty_path}/${thirdparty_dir_name}")
+set(current_library_path "${current_thirdparty_path}/${library_parent_dir}")
+
+if(MSVC)
+	if(CMAKE_CL_64)
+		set(lib_dir "lib64")
+	else()
+		set(lib_dir "lib")
+	endif()
+	set(library_dir "${current_library_path}/${lib_dir}")
+endif()
+
+foreach(dir ${include_dirs})
+	if(${dir} EQUAL ".")
+		include_directories(${current_thirdparty_path})
+	else()
+		include_directories(${current_thirdparty_path}/${dir})
+	endif()
+endforeach()
+
+foreach(lib ${libraries})
+	set(link_library_files ${link_library_files} ${library_dir}/${LIBRARY_PREFIXES}${lib}${LIBRARY_SUFFIXES})
+endforeach()

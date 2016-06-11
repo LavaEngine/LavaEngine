@@ -1,0 +1,31 @@
+set(library_parent_dir "Source")
+set(include_dirs 
+	Include
+)
+set(libraries 
+	vulkan-1
+)
+
+set(current_thirdparty_path "$ENV{VK_SDK_PATH}")
+set(current_library_path "${current_thirdparty_path}/${library_parent_dir}")
+
+if(MSVC)
+	if(CMAKE_CL_64)
+		set(lib_dir "lib")
+	else()
+		set(lib_dir "lib32")
+	endif()
+	set(library_dir "${current_library_path}/${lib_dir}")
+endif()
+
+foreach(dir ${include_dirs})
+	if(${dir} EQUAL ".")
+		include_directories(${current_thirdparty_path})
+	else()
+		include_directories(${current_thirdparty_path}/${dir})
+	endif()
+endforeach()
+
+foreach(lib ${libraries})
+	set(link_library_files ${link_library_files} ${library_dir}/${LIBRARY_PREFIXES}${lib}${LIBRARY_SUFFIXES})
+endforeach()

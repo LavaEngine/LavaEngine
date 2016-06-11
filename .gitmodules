@@ -1,0 +1,12 @@
+[submodule "ThirdParty/vkcpp"]
+	path = ThirdParty/vkcpp
+	url = git@github.com:nvpro-pipeline/vkcpp.git
+[submodule "ThirdParty/glfw"]
+	path = ThirdParty/glfw
+	url = git@github.com:glfw/glfw.git
+[submodule "ThirdParty/glm"]
+	path = ThirdParty/glm
+	url = git@github.com:g-truc/glm.git
+[submodule "ThirdParty/freetype"]
+	path = ThirdParty/freetype
+	url = git://git.sv.nongnu.org/freetype/freetype2.git
